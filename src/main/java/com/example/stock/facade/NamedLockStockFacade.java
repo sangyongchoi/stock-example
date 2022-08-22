@@ -3,6 +3,7 @@ package com.example.stock.facade;
 import com.example.stock.repository.LockRepository;
 import com.example.stock.service.StockService;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class NamedLockStockFacade {
@@ -16,6 +17,7 @@ public class NamedLockStockFacade {
         this.stockService = stockService;
     }
 
+    @Transactional
     public void decrease(Long id, Long quantity) {
         try {
             lockRepository.getLock(id.toString());
